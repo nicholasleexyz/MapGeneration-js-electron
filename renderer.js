@@ -1,5 +1,20 @@
 'use strict';
+
 const seedrandom = require('seedrandom');
+/**
+ *
+ */
+function Nav() {
+  const width = document.getElementById('mySidenav').style.width;
+  if (width === '0px' || width == '') {
+    document.getElementById('mySidenav').style.width = '250px';
+    $('.animated-icon').toggleClass('open');
+  } else {
+    document.getElementById('mySidenav').style.width = '0px';
+    $('.animated-icon').toggleClass('open');
+  }
+}
+
 /**
  *
  */
@@ -8,14 +23,17 @@ function doTheThing() {
 
   const canvas = document.querySelector('canvas');
   const context = canvas.getContext('2d');
+
   let width = canvas.width = 512;
   let height = canvas.height = 512;
+
   const cellSize = 1;
+
   let grid = [];
 
   const seedInput = document.querySelector('#seed input');
-
   const ele = document.getElementsByName('size');
+
   for (let i = 0; i < ele.length; i++) {
     const element = ele[i];
 
@@ -144,13 +162,15 @@ function doTheThing() {
 
   generateGrid();
 
-  /** */
+  /**
+   *
+  */
   function drawGrid() {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
-        // context.fillStyle = grid[y][x] ? "#222E44" : "#3497A1";
-        context.fillStyle = grid[y][x] ? '#5B76B9' : '#63C7DD';
-        // context.fillStyle = grid[y][x] ? "#3A2B2A" : "#F5F6F7" ;
+        // context.fillStyle = grid[y][x] ? '#222E44' : '#3497A1';
+        // context.fillStyle = grid[y][x] ? '#5B76B9' : '#63C7DD';
+        context.fillStyle = grid[y][x] ? '#3A2B2A' : '#F5F6F7';
         // context.fillStyle = grid[y][x] ? '#000' : '#FFF';
         context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
       }
@@ -161,7 +181,7 @@ function doTheThing() {
 
   downloadButton.addEventListener('click', (e) => {
     const link = document.createElement('a');
-    link.download = `${seedInput.value}.png`;
+
     link.href = canvas.toDataURL();
     link.click();
     link.delete;

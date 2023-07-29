@@ -1,0 +1,53 @@
+:root {
+    --marginAmount: 4px;
+    --paddingAmount: 1rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-repeat: repeat;
+    background-image: url("./assets/voronoi.png");
+    background-color: gray;
+}
+
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.sidebar {
+    margin: var(--marginAmount);
+    padding: var(--paddingAmount);
+    /* padding: 4px; */
+    background-color: blueviolet;
+    justify-self: start;
+    display: flex;
+    height: 100vh - var(--marginAmount);
+    width: 25% - var(--marginAmount);
+    border-radius: var(--paddingAmount);
+}
+
+.container-map {
+    margin: var(--marginAmount);
+    /* padding: var(--paddingAmount); */
+    background-color: brown;
+    /* justify-self: end; */
+    display: flex;
+    height: 100vh;
+    width: 75%;
+    border-radius: var(--paddingAmount);
+    justify-content: center;
+    align-items: center;
+}
+
+.style-map {
+    display: flex;
+    /* background-color: whitesmoke; */
+    width: 90vh;
+    height: 90vh;
+}
