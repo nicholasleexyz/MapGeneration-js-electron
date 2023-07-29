@@ -5,178 +5,44 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
     <title>Cellular Automata</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="content">
-        <div class="sidebar">
-            <div id="seed">
-                <span class="text-light">SEED</span>
-                <input type="text" name="seed" value="asdf">
-            </div>
-            <span class="text-light">SIZE</span>
-            <input type="radio" name="size" id="small" />
-            <label for="small" class="text-light">128</label>
-            <input type="radio" name="size" id="medium" />
-            <label for="medium" class="text-light">256</label>
-            <input type="radio" name="size" id="large" />
-            <label for="large" class="text-light">512</label>
+    <!-- <div class="content"> -->
+    <div class="content voronoi">
+        <div class="menu">
+            <ul>
+                <li>
+                    <span class="">SEED</span>
+                </li>
+                <li>
+                    <input type="text" name="seed" value="asdf" id="seedInput">
+                </li>
+                <li>
+                    <span class="">SIZE</span>
+                </li>
+                <li>
+                    <input type="radio" name="size" id="small" />
+                    <label for="small" class="">128</label>
+                    <input type="radio" name="size" id="medium" />
+                    <label for="medium" class="">256</label>
+                    <input type="radio" name="size" id="large" />
+                    <label for="large" class="">512</label>
+                </li>
+                <li>
+                    <button type="button" id="download-button">Save</button>
+                    <a id="link"></a>
+                </li>
+            </ul>
         </div>
-        <div class="container-map">
-            <canvas class="style-map"></canvas>
+
+        <div class="map">
+            <canvas></canvas>
         </div>
     </div>
-
-    <!-- <div class="row flex-nowrap">
-        <div class="col-auto ">
-            <div class="d-flex flex-column align-items-start px-3 pt-2 text-white min-vh-100">
-                <ul>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-primary text-light" id="download-button">Download</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col">
-            <h1 class="text-light">slkdafj;lksadjflkdsa;jf</h1>
-            <p class="text-light">
-                askdjf;lkdsaj;dsakfkdsj;fsk
-            </p>
-            <p class="text-light">
-                askdjf;lkdsaj;dsakfkdsj;fsk
-            </p>
-        </div>
-    </div>
-    </div> -->
-    <!-- <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/"
-                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline text-dark">Menu</span>
-                    </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
-                        id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0">
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-speedometer2"></i> <span
-                                    class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                        </li>
-                        <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                                <i class="fs-4 bi-bootstrap"></i> <span
-                                    class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span>
-                                        1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span>
-                                        2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span>
-                                        1</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span>
-                                        2</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span>
-                                        3</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span>
-                                        4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <hr>
-                </div>
-            </div>
-            <div class="col py-3">
-                <h1 class="text-light">slkdafj;lksadjflkdsa;jf</h1>
-                <p class="text-light">
-                    askdjf;lkdsaj;dsakfkdsj;fsk
-                </p>
-                <p class="text-light">
-                    askdjf;lkdsaj;dsakfkdsj;fsk
-                </p>
-            </div>
-        </div>
-    </div> -->
-
-
-
-    <!-- <div class="vh-100 container-fluid">
-        <div class="row vh-100 align-items-center">
-            <div class="col-6">
-                <div class="row">
-                    <h1 class="text-light">2D Map Generator</h1>
-                    <div id="seed">
-                        <span class="text-light">SEED</span>
-                        <input type="text" name="seed" value="asdf">
-                    </div>
-                    <div>
-                        <span class="text-light">SIZE</span>
-                        <input type="radio" name="size" id="small" />
-                        <label for="small" class="text-light">128</label>
-                        <input type="radio" name="size" id="medium" />
-                        <label for="medium" class="text-light">256</label>
-                        <input type="radio" name="size" id="large" />
-                        <label for="large" class="text-light">512</label>
-                    </div>
-                    <div class="">
-                        <button type="button" class="btn btn-primary text-light" id="download-button">Download</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 justify-content-start">
-                <canvas class="w-100" style="image-rendering: pixelated;" id="map"></canvas>
-            </div>
-        </div>
-    </div> -->
-
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.bundle.js"></script>

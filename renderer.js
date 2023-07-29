@@ -1,19 +1,6 @@
 'use strict';
 
 const seedrandom = require('seedrandom');
-/**
- *
- */
-function Nav() {
-  const width = document.getElementById('mySidenav').style.width;
-  if (width === '0px' || width == '') {
-    document.getElementById('mySidenav').style.width = '250px';
-    $('.animated-icon').toggleClass('open');
-  } else {
-    document.getElementById('mySidenav').style.width = '0px';
-    $('.animated-icon').toggleClass('open');
-  }
-}
 
 /**
  *
@@ -31,7 +18,7 @@ function doTheThing() {
 
   let grid = [];
 
-  const seedInput = document.querySelector('#seed input');
+  const seedInput = document.getElementById('seedInput');
   const ele = document.getElementsByName('size');
 
   for (let i = 0; i < ele.length; i++) {
@@ -180,11 +167,14 @@ function doTheThing() {
   const downloadButton = document.querySelector('#download-button');
 
   downloadButton.addEventListener('click', (e) => {
-    const link = document.createElement('a');
+    const link = document.getElementById('link');
 
-    link.href = canvas.toDataURL();
+    link.setAttribute('download', `${seed}.png`);
+    link.setAttribute('href',
+        canvas.toDataURL('image/png')
+            .replace('image/png', 'image/octet-stream'));
+
     link.click();
-    link.delete;
   });
 }
 

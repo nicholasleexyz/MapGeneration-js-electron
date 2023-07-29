@@ -960,6 +960,7 @@ if ((typeof module) == 'object' && module.exports) {
 'use strict';
 
 const seedrandom = require('seedrandom');
+
 /**
  *
  */
@@ -990,7 +991,7 @@ function doTheThing() {
 
   let grid = [];
 
-  const seedInput = document.querySelector('#seed input');
+  const seedInput = document.getElementById('seedInput');
   const ele = document.getElementsByName('size');
 
   for (let i = 0; i < ele.length; i++) {
@@ -1139,13 +1140,51 @@ function doTheThing() {
   const downloadButton = document.querySelector('#download-button');
 
   downloadButton.addEventListener('click', (e) => {
-    const link = document.createElement('a');
+    // console.log('saving image!');
+    // const w = canvas.width;
+    // const h = canvas.height;
 
-    link.href = canvas.toDataURL();
+    // const newCanvas = createCanvas(w, h);
+    // const cxt = newCanvas.getContext('2d');
+
+    // for (let y = 0; y < h; y++) {
+    //   for (let x = 0; x < w; x++) {
+    //     // context.fillStyle = grid[y][x] ? '#222E44' : '#3497A1';
+    //     // context.fillStyle = grid[y][x] ? '#5B76B9' : '#63C7DD';
+    //     // cxt.fillStyle = grid[y][x] ? '#3A2B2A' : '#F5F6F7';
+    //     cxt.fillStyle = grid[y][x] ? '#000' : '#FFF';
+    //     cxt.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+    //   }
+    // }
+
+    // const buffer = newCanvas.toBuffer('image/png');
+    // fs.writeFileSync(`./${seed}.png`, buffer);
+    // console.log('saved image');
+    // const link = document.createElement('a');
+
+    // here is the most important part because
+    // if you don't replace you will get a DOM 18 exception.
+    // const image =
+    //     canvas.toDataURL('image/png')
+    //         .replace('image/png', 'image/octet-stream');
+
+
+    // window.location.href = image; // it will save locally
+
+    // link.href = dataURL;
+    // link.click();
+    // link.delete;
+
+    const link = document.getElementById('link');
+    link.setAttribute('download', `${seed}.png`);
+    link.setAttribute('href',
+        canvas.toDataURL('image/png')
+            .replace('image/png', 'image/octet-stream'));
+
     link.click();
-    link.delete;
   });
 }
+
 
 // All the Node.js APIs are available in the preload process.
 // It has the same sandbox as a Chrome extension.

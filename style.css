@@ -1,15 +1,22 @@
 :root {
-    --marginAmount: 4px;
+    --borderColor: #494949;
+    --borderWidth: 0.25rem;
+    --marginAmount: 0.25rem;
     --paddingAmount: 1rem;
+}
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("assets/fonts/Open_Sans/static/OpenSans-Regular.ttf");
 }
 
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
-body {
-    height: 100vh;
+.voronoi {
     background-repeat: repeat;
     background-image: url("./assets/voronoi.png");
     background-color: gray;
@@ -18,36 +25,103 @@ body {
 .content {
     display: flex;
     flex-wrap: nowrap;
-}
-
-.sidebar {
-    margin: var(--marginAmount);
-    padding: var(--paddingAmount);
-    /* padding: 4px; */
-    background-color: blueviolet;
-    justify-self: start;
-    display: flex;
-    height: 100vh - var(--marginAmount);
-    width: 25% - var(--marginAmount);
-    border-radius: var(--paddingAmount);
-}
-
-.container-map {
-    margin: var(--marginAmount);
-    /* padding: var(--paddingAmount); */
-    background-color: brown;
-    /* justify-self: end; */
-    display: flex;
     height: 100vh;
-    width: 75%;
-    border-radius: var(--paddingAmount);
     justify-content: center;
     align-items: center;
 }
 
-.style-map {
+.menu {
+    /* card */
     display: flex;
-    /* background-color: whitesmoke; */
-    width: 90vh;
-    height: 90vh;
+    margin: var(--marginAmount);
+    height: calc(100vh - (var(--marginAmount) * 2) - 1rem);
+    max-height: 1024px;
+    border-radius: var(--paddingAmount);
+    border: solid var(--borderColor) var(--borderWidth);
+    /* end card */
+
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes shrink {
+    from {
+        width: 40%;
+    }
+
+    to {
+        width: 0;
+        display: none;
+        border: none;
+    }
+}
+
+@keyframes expand {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 40%;
+        display: flex;
+        border: solid var(--borderColor) var(--borderWidth);
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .menu {
+        /* card */
+        display: flex;
+        margin: var(--marginAmount);
+        height: calc(100vh - (var(--marginAmount) * 2) - 1rem);
+        max-height: 1024px;
+        border-radius: var(--paddingAmount);
+        border: solid var(--borderColor) var(--borderWidth);
+        /* end card */
+        justify-content: center;
+        align-items: center;
+
+        background-color: blueviolet;
+        animation: expand 0.25s forwards;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .menu {
+        /* card */
+        display: flex;
+        margin: var(--marginAmount);
+        height: calc(100vh - (var(--marginAmount) * 2) - 1rem);
+        max-height: 1024px;
+        border-radius: var(--paddingAmount);
+        border: solid var(--borderColor) var(--borderWidth);
+        /* end card */
+        justify-content: center;
+        align-items: center;
+
+        background-color: blueviolet;
+        animation: shrink 0.25s forwards;
+    }
+}
+
+.map {
+    /* card */
+    display: flex;
+    margin: var(--marginAmount);
+    height: calc(100vh - (var(--marginAmount) * 2) - 1rem);
+    max-height: 1024px;
+    border-radius: var(--paddingAmount);
+    border: solid var(--borderColor) var(--borderWidth);
+    /* end card */
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    background-color: brown;
+}
+
+ul {
+    list-style: none;
 }
